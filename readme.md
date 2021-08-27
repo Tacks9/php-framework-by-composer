@@ -240,3 +240,12 @@ autoload_static.php文件     映射 classMap
   'Article' => __DIR__ . '/../..' . '/app/models/Article.php',
 
 ```
+
+
+### 2.4 视图
+
+#### 2.4.1 初始步骤
+
+- `app/views` 视图目录
+- 控制器获取模型数据，然后 `require` 控制器引入视图模板，渲染html
+
