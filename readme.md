@@ -42,3 +42,9 @@ $ php73 composer.phar config -g repo.packagist composer https://mirrors.cloud.te
     }
 }
 ```
+
+### 1.4 `composer`初始化目录
+
+```shell
+$ php73 composer.phar update
+```
