@@ -146,3 +146,39 @@ Macaw::dispatch();
     - 然后实现
   - 如果最后还是找不到
     - 404 显示 
+
+
+### 2.2 控制器
+
+#### 2.2.1 初始步骤
+
+- `app/controllers` 控制器目录
+- `BaseControllers` 基础控制器
+- `HomeControllers` home控制器
+
+
+```json
+# composer配置自动加载
+"autoload": {
+    "classmap": [
+      "app/controllers",
+      "app/models"
+    ]
+}
+
+# 更新
+$ php73 composer.phar dump-autoload
+
+# 文件变化
+
+autoload_classmap.php文件   映射 classMap
+  'BaseController' => $baseDir . '/app/controllers/BaseController.php',
+  'HomeController' => $baseDir . '/app/controllers/HomeController.php',
+
+autoload_static.php文件     映射 classMap
+  'BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController.php',
+  'HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
+
+```
+
+

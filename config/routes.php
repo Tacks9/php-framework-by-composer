@@ -2,7 +2,7 @@
 /*
  * @Descripttion: 路由文件
  * @Date: 2021-08-27 11:38:12
- * @LastEditTime: 2021-08-27 15:46:35
+ * @LastEditTime: 2021-08-27 16:39:46
  */
 
 // 路由文件中载入了 Macaw 类：“use NoahBuscher\Macaw\Macaw;”
@@ -19,6 +19,8 @@ use NoahBuscher\Macaw\Macaw;
 Macaw::get('//', function() {
     echo 'GET:Hello world!';
 });
+
+Macaw::get('/home', 'HomeController@index');
 
 // 配置404路由
 Macaw::get('(:all)', function($fu) {

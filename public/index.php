@@ -2,9 +2,10 @@
 /*
  * @Descripttion: 入口文件
  * @Date: 2021-08-27 11:38:12
- * @LastEditTime: 2021-08-27 15:44:36
+ * @LastEditTime: 2021-08-27 16:31:39
  */
-
+ini_set("display_errors", "On");
+error_reporting(E_ALL | E_STRICT);
 
 function dd($var)
 {
