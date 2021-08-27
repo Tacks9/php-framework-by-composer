@@ -182,3 +182,61 @@ autoload_static.php文件     映射 classMap
 ```
 
 
+### 2.3 模型
+
+#### 2.3.1 初始步骤
+
+- `app/models` 模型目录
+- `Article` article模型
+- MySQL数据库链接方法
+  - mysqli
+  - pdo
+
+- sql文件
+
+```sql
+DROP TABLE IF EXISTS `article`;
+
+CREATE TABLE `article` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `content` longtext,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `article` WRITE;
+/*!40000 ALTER TABLE `article` DISABLE KEYS */;
+
+INSERT INTO `article` (`id`, `title`)
+VALUES
+	(1,'打印机没墨了'),
+	(2,'打印机测试');
+
+/*!40000 ALTER TABLE `article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+```
+
+- json文件
+
+
+```json
+# composer配置自动加载
+"autoload": {
+    "classmap": [
+      "app/models",
+    ]
+}
+
+# 更新
+$ php73 composer.phar dump-autoload
+
+# 文件变化
+
+autoload_classmap.php文件   映射 classMap
+  'Article' => $baseDir . '/app/models/Article.php',
+
+autoload_static.php文件     映射 classMap
+  'Article' => __DIR__ . '/../..' . '/app/models/Article.php',
+
+```
