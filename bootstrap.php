@@ -4,7 +4,7 @@
  * @Descripttion: 视图装载启动器
  * @Author: tacks321@qq.com
  * @Date: 2021-08-28 16:11:30
- * @LastEditTime: 2021-08-28 16:37:24
+ * @LastEditTime: 2021-08-28 17:12:03
  */
 
 // 做一系列准备工作
@@ -23,3 +23,8 @@ define('BASE_PATH', __DIR__);
 
 // Autoload 自动载入
 require BASE_PATH.'/vendor/autoload.php';
+
+// 错误提示 whoops库引入  
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();

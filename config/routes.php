@@ -2,7 +2,7 @@
 /*
  * @Descripttion: 路由文件
  * @Date: 2021-08-27 11:38:12
- * @LastEditTime: 2021-08-28 11:37:27
+ * @LastEditTime: 2021-08-28 16:58:09
  */
 
 // 路由文件中载入了 Macaw 类：“use NoahBuscher\Macaw\Macaw;”
@@ -27,11 +27,16 @@ Macaw::get('/home', 'HomeController@index');
 Macaw::get('/home/recentList', 'HomeController@recentList');
 
 
+// 采用错误页面显示404
+Macaw::$error_callback = function() {
+  throw new Exception("路由无匹配项 404 Not Found");
+};
 
-// 配置404路由
-Macaw::get('(:all)', function($fu) {
-  echo '未匹配到路由 404 <br/>'.$fu;
-});
+
+// // 配置404路由
+// Macaw::get('(:all)', function($fu) {
+//   echo '未匹配到路由 404 <br/>'.$fu;
+// });
   
 
 

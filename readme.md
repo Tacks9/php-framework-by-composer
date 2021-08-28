@@ -320,3 +320,50 @@ $list = $query->fetchAll();
     - 初始化工作（例如数据库的一些配置等）
   - 加载路由 （最后加载路由去分发请求）
 
+### 2.5 错误异常页面
+
+#### 2.5.1 初始步骤
+
+> 引用同laravel一样的错误信息提示，`filp/whoops`
+
+- [filp/whoops](https://github.com/filp/whoops/tags)
+  - 依赖于 [psr/log](https://github.com/php-fig/log)
+- [文档](http://filp.github.io/whoops/)
+
+**【filp/whoops】**
+
+- 安装
+
+```shell
+# 安装路由库
+{
+  "require": {
+      "filp/whoops": "*"
+  }
+}
+# 更新
+$ php73 composer.phar update
+# 注意一下
+vendor/composer下文件的变化
+
+```
+
+- 使用
+
+```php
+// 【启动器 bootstrap.php】
+// 错误提示 whoops库引入  
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
+
+// 【路由 routes.php】
+// 采用错误页面显示404
+Macaw::$error_callback = function() {
+    throw new Exception("路由无匹配项 404 Not Found");
+};
+```
+
+- 测试  
+ 
+- 访问到一个不存在的路由，观察页面报错内容，已经是同Larvel一样的报错信息
