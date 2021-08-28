@@ -11,12 +11,20 @@ class ComposerStaticInita9f4d43e7ec60598f34329ac0034f164
         array (
             'NoahBuscher\\Macaw\\' => 18,
         ),
+        'E' => 
+        array (
+            'Envms\\FluentPDO\\' => 16,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'NoahBuscher\\Macaw\\' => 
         array (
             0 => __DIR__ . '/..' . '/noahbuscher/macaw',
+        ),
+        'Envms\\FluentPDO\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/envms/fluentpdo/src',
         ),
     );
 

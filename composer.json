@@ -1,6 +1,7 @@
 {
     "require": {
-        "noahbuscher/macaw": "dev-master"
+        "noahbuscher/macaw": "dev-master",
+    	"envms/fluentpdo": "^2.2.0"
     },
     "autoload": {
         "classmap": [

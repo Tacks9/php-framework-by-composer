@@ -7,6 +7,8 @@
 
 - [利用 Composer 一步一步构建自己的 PHP 框架（一）——基础准备](http://lvwenhan.com/php/405.html)
 - [利用 Composer 一步一步构建自己的 PHP 框架（二）——构建路由](http://lvwenhan.com/php/406.html)
+- [利用 Composer 一步一步构建自己的 PHP 框架（三）——设计 MVC](https://lvwenhan.com/php/408.html)
+- [利用 Composer 一步一步构建自己的 PHP 框架（四）——使用 ORM](http://lvwenhan.com/php/409.html)
 
 
 ## 1 Composer依赖管理器
@@ -240,6 +242,61 @@ autoload_static.php文件     映射 classMap
   'Article' => __DIR__ . '/../..' . '/app/models/Article.php',
 
 ```
+
+#### 2.3.2 `ORM`的选择
+
+>  `ORM`全称是 `Object Relational Mapping` (对象关系映射) , O（Object）对象，数据Model持久化类。R（Relation）关系数据，M (Mapping)映射，将对象映射到关系数据，将关系数据映射到对象的过程。ORM 就是以OOP思想，产生增删改查SQL语句。 即用PHP来实现MySQL数据操作。比如有MySQL原生API、MySQLi面向过程、MySQLi面向对象、PDO等。
+
+
+- [GitHub上高分的PHP数据库操作库](https://github.com/search?l=PHP&o=desc&p=1&q=pdo&s=stars&type=Repositories)
+- [envms/fluentpdo](https://github.com/envms/fluentpdo/releases/tag/v2.2.2)
+- [Getting Started with FluentPDO](https://www.sitepoint.com/getting-started-fluentpdo/)
+- [中文文档](https://learnku.com/articles/20859)
+
+
+**【`envms/fluentpdo`】**
+
+- 安装
+
+```shell
+# 安装路由库
+{
+  "require": {
+    	"envms/fluentpdo": "^2.2.0"
+  }
+}
+# 更新
+$ php73 composer.phar update
+
+# 文件变化
+### composer
+autoload_psr4.php
+  自动加载的映射      'Envms\\FluentPDO\\' => array($vendorDir . '/envms/fluentpdo/src'),
+autoload_static.php
+  prefixLengthsPsr4（长度映射关系，以第一个字母开头的数组，key为库，value为长度） 
+  prefixDirsPsr4 （前缀路径对应，以库为key，路径映射为value）
+installed.json
+  envms/fluentpdo 库的信息 （一个大json）
+installed.php
+  每次root的reference都会变动一次
+  增加库json基础简单信息
+### fluentpdo
+src主代码中
+Queries/ 基本操作(Base、Common、Delete、Insert、Json、Select、Update)
+Exception.php (异常处理)
+Literal.php   (直译)
+Query.php     (主文件)
+Regex.php     (规则类)
+Structure.php (结构主键、外键、索引)
+Utilities.php (工具类)
+
+```
+
+ 
+
+ 
+
+
 
 
 ### 2.4 视图
