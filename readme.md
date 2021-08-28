@@ -292,6 +292,20 @@ Utilities.php (工具类)
 
 ```
 
+- 使用
+
+```php
+$pdo    = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8", $username, $password, $options);
+$fluent = new \Envms\FluentPDO\Query($pdo);
+
+// 查询最新的5条数据
+$query = $fluent->from('article')
+                ->orderBy('id DESC')
+                ->limit(5);
+
+// 查询获取所有数据
+$list = $query->fetchAll();
+```
  
 
  
