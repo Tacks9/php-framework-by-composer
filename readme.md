@@ -196,31 +196,9 @@ autoload_static.php文件     映射 classMap
 
 - sql文件
 
-```sql
-DROP TABLE IF EXISTS `article`;
-
-CREATE TABLE `article` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `content` longtext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-LOCK TABLES `article` WRITE;
-/*!40000 ALTER TABLE `article` DISABLE KEYS */;
-
-INSERT INTO `article` (`id`, `title`)
-VALUES
-	(1,'打印机没墨了'),
-	(2,'打印机测试');
-
-/*!40000 ALTER TABLE `article` ENABLE KEYS */;
-UNLOCK TABLES;
-
-```
+[sql文件](./config/pfc.sql)
 
 - json文件
-
 
 ```json
 # composer配置自动加载
@@ -308,7 +286,9 @@ $list = $query->fetchAll();
 ```
  
 
- 
+#### 2.3.3 数据库配置信息抽离
+
+- 将数据库配置移到配置文件config中（database.php）
 
 
 
