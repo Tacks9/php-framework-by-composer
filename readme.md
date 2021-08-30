@@ -419,3 +419,31 @@ Macaw::$error_callback = function() {
 `services` 目录
 
 - `View.php` 视图装载器
+- `Mail.php` 邮件发送器
+
+
+
+### 2.7 邮件模块
+
+#### 2.7.1 初始步骤
+
+
+- [nette/mail](https://github.com/nette/mail)
+
+**【nette/mail】**
+
+- 安装
+
+```shell
+# 安装路由库
+{
+  "require": {
+      "nette/mail": "*"
+  }
+}
+# 更新
+$ php73 composer.phar update
+# 注意一下文件变化
+vendor/composer
+vendor/nette
+```

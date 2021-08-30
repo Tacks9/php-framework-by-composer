@@ -2,7 +2,8 @@
     "require": {
         "noahbuscher/macaw": "dev-master",
     	"envms/fluentpdo": "^2.2.0",
-        "filp/whoops": "*"
+        "filp/whoops": "*",
+        "nette/mail": "*"
     },
     "autoload": {
         "classmap": [
