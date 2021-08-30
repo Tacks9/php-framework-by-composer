@@ -49,6 +49,7 @@ class ComposerStaticInita9f4d43e7ec60598f34329ac0034f164
         'BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
+        'View' => __DIR__ . '/../..' . '/services/View.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

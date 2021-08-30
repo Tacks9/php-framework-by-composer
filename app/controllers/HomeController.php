@@ -5,7 +5,7 @@
  * @Descripttion: Home控制器
  * @Author: tacks321@qq.com
  * @Date: 2021-08-27 16:28:56
- * @LastEditTime: 2021-08-28 11:29:44
+ * @LastEditTime: 2021-08-30 14:40:00
  */
 
 class HomeController extends BaseController 
@@ -32,6 +32,22 @@ class HomeController extends BaseController
         $count = count($list);
 
         require dirname(__FILE__).'/../views/index.php';
+        
+    }
+
+    // 文章数据
+    public function article()
+    {
+        $page_title = "控制器、方法  Home/article ";
+
+
+        $article  = Article::getArticle();
+
+
+        // 直接调用赋值视图
+        $this->view = View::make('home.article')->with('article',$article)
+                                                ->withPageTitle($page_title);
+
         
     }
 

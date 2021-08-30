@@ -3,7 +3,7 @@
  * @Descripttion: 模型Model
  * @Author: tacks321@qq.com
  * @Date: 2021-08-27 16:58:32
- * @LastEditTime: 2021-08-28 15:56:55
+ * @LastEditTime: 2021-08-30 10:11:33
  */
 
 class Article 
@@ -81,6 +81,38 @@ class Article
         $list = $query->fetchAll();
 
         return $list;
+
+    }
+
+    
+    // 获取最新的
+    public static function getArticle()
+    {
+        // database 载入数据库的配置
+        $CONFIG_DATABASE = require '../config/database.php';
+
+        // Mysqli 链接数据库
+        $host     = $CONFIG_DATABASE['host'];
+        $username = $CONFIG_DATABASE['username'];
+        $password = $CONFIG_DATABASE['password'];
+        $dbname   = $CONFIG_DATABASE['dbname'];
+        $port     = $CONFIG_DATABASE['port'];
+        $options  = [  
+            // 持久化链接
+            PDO:: ATTR_PERSISTENT => true
+        ];
+        $pdo    = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8", $username, $password, $options);
+        $fluent = new \Envms\FluentPDO\Query($pdo);
+
+        // 查询最新的5条数据
+        $query = $fluent->from('article')
+                    ->orderBy('id DESC')
+                    ->limit(1);
+    
+        // 查询获取
+        $data = $query->fetch();
+
+        return $data;
 
     }
 

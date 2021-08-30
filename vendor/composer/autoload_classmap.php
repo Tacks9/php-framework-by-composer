@@ -10,4 +10,5 @@ return array(
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
+    'View' => $baseDir . '/services/View.php',
 );

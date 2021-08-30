@@ -9,6 +9,7 @@
 - [利用 Composer 一步一步构建自己的 PHP 框架（二）——构建路由](http://lvwenhan.com/php/406.html)
 - [利用 Composer 一步一步构建自己的 PHP 框架（三）——设计 MVC](https://lvwenhan.com/php/408.html)
 - [利用 Composer 一步一步构建自己的 PHP 框架（四）——使用 ORM](http://lvwenhan.com/php/409.html)
+- [利用 Composer 完善自己的 PHP 框架（一）——视图装载](https://lvwenhan.com/php/410.html)
 
 
 ## 1 Composer依赖管理器
@@ -300,14 +301,58 @@ $list = $query->fetchAll();
 - `app/views` 视图目录
 - 控制器获取模型数据，然后 `require` 控制器引入视图模板，渲染html
 
-#### 2.4.2 视图装载类
+#### 2.4.2 视图作用
 
 **功能**
 
 - 可以根据视图名找到视图文件；
 - 可以优雅的将变量的值传递给视图；
 
-**功能**
+#### 2.4.3 视图装载类`View`自动加载操作
+
+**`service/View.php` 视图装载器**
+
+
+```php
+# composer配置自动加载
+"autoload": {
+    "classmap": [
+      "services",
+    ]
+}
+
+# 更新
+$ php73 composer.phar dump-autoload
+
+# composer 文件变化
+
+autoload_classmap.php文件   映射 classMap
+  'View' => $baseDir . '/services/View.php',
+autoload_static.php文件     映射 classMap
+  'View' => __DIR__ . '/../..' . '/services/View.php',
+
+```
+
+#### 2.4.3 视图装载类`View`执行流程
+
+
+1. `View`视图装载类
+2. `View::make($viewName)`静态方法。接受视图名称作为参数，实例化`View`类的对象
+    - `self::getFilePath($viewName)` 判断视图文件是否存在；
+    - `Exception` 视图不存在则抛出异常；
+    - `new View($viewFilePath)`如果试图存在，则返回视图对象；
+3. `$this->with($key, $value = null)` 变量装载
+    - 可以优雅的给这个 `View` 对象插入要在视图里调用的变量;
+4. `$this->withKey($value)` 变量装载
+    - 实现原理`__call($method, $parameters)` 魔术方法；
+    - 例如 withPageTitle($value)将采用蛇形的命名，转化为 `$page_title`变量使用；
+    - 例如 withTitle($value)将采用蛇形的命名，转化为 `$title`变量使用；
+5. 控制器`Controller`中的视图变量 `$this->view` 则是基于 `BaseController`中
+    - 父类`BaseController.php` 会在析构函数`__destruct()`中处理视图的加载；
+    - `extract($data)` 变量加载。 视图要用到的变量;
+    - `require($viewFilePath)`  视图文件。将最终运算结果发送给浏览器;
+
+
 
 
 ### 2.5 入口文件
@@ -367,3 +412,10 @@ Macaw::$error_callback = function() {
 - 测试  
  
 - 访问到一个不存在的路由，观察页面报错内容，已经是同Larvel一样的报错信息
+
+
+### 2.6 组件类库
+
+`services` 目录
+
+- `View.php` 视图装载器

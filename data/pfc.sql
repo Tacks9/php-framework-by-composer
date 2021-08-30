@@ -20,6 +20,9 @@ CREATE USER 'tacks'@'%' IDENTIFIED BY '123456';
 --- 授权 ---
 GRANT ALL ON pfc.* TO 'tacks'@'%';
 
+--- 刷新 ---
+flush privileges;
+
 
 --- 导入数据 ---
 INSERT INTO `article` (`title`, `link`) VALUES ('直播回看丨贵州公安英模先进事迹报告会', 'http://mp.weixin.qq.com/s?__biz=MzA4NjQ1NDU2Mg==&mid=2695499963&idx=2&sn=9e99176f4f0de2d08c688334b47ddcfc&chksm=ba96c8f68de141e09513a9b6065b92f5cc4215292f4e56e2ff0e3c6874863ec65366b5a9471a#rd');
