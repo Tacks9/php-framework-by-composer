@@ -2,7 +2,7 @@
 /*
  * @Descripttion: 路由文件
  * @Date: 2021-08-27 11:38:12
- * @LastEditTime: 2021-08-30 10:13:59
+ * @LastEditTime: 2021-08-31 09:51:38
  */
 
 // 路由文件中载入了 Macaw 类：“use NoahBuscher\Macaw\Macaw;”
@@ -29,6 +29,9 @@ Macaw::get('/home/recentList', 'HomeController@recentList');
 // 获取最新的文章内容
 Macaw::get('/home/article', 'HomeController@article');
 
+
+// 发送邮件信息
+Macaw::get('/home/mailsend', 'HomeController@mailsend');
 
 // 采用错误页面显示404
 Macaw::$error_callback = function() {

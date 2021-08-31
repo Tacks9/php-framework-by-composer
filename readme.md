@@ -333,7 +333,7 @@ autoload_static.php文件     映射 classMap
 
 ```
 
-#### 2.4.3 视图装载类`View`执行流程
+#### 2.4.4 视图装载类`View`执行流程
 
 
 1. `View`视图装载类
@@ -445,5 +445,57 @@ Macaw::$error_callback = function() {
 $ php73 composer.phar update
 # 注意一下文件变化
 vendor/composer
-vendor/nette
+vendor/nette/mail
+vendor/nette/utils
+
 ```
+
+#### 2.4.2 邮件作用
+
+**功能**
+
+- 核心是给 一批邮件地址 发送邮件内容。一个是目标地址，一个是发送内容。
+
+
+#### 2.7.3 邮件类`Mail`自动加载操作
+
+```php
+# composer配置自动加载
+"autoload": {
+    "classmap": [
+      "services",
+    ]
+}
+
+# 更新
+$ php73 composer.phar dump-autoload
+
+# composer 文件变化
+```
+
+
+#### 2.7.4 邮件类`Mail`执行流程
+
+1. 组件：类。
+    - `Mail`组件邮件发送类。继承`Nette\Mail\Message`类；
+2. 配置：`config/mail.php`。
+    - 关于host, 不同的邮件服务商不同，例如qq是 `smtp.qq.com`、163是`smtp.163.com`；
+    - 关于密码，QQ服务，需要在邮件设置->服务中，设置IMAP/SMTP服务，开通第三方授权码登陆；
+3. 组件：构造函数。
+    - `Mail::to($to)`静态方法。接受要接收的邮件作为参数，并且`Mail`类的对象，返回`$this`;
+    - `__construct()` 构造函数中，默认设置`config/mail.php`配置文件中的`username`为发件人（调用 `Message addTo()` ）；
+    - `to($to)` 支持字符串，也支持数组，可以发送一封或者多封（调用 `Message setFrom()` ）；
+4. 组件：相关方法。
+    - `Mail`的公共方法`from()`、`title()`、`content()` 封装了原来的 `Message`的相关方法，加入相关异常判断； 
+    - 设置发件人：  `Mail from()`    => `Message setFrom()`
+    - 设置邮件标题：`Mail title()`   => `Message setSubject()`
+    - 设置邮件内容：`Mail content()` => `Message setHTMLBody()`（可以富文本）
+5. 控制器：信息装载。
+    - `$this->mail` 成员变量，用来保存邮件组装的信息
+    - 在方法中任意为止，可以将 `Mail::to()` 设置的邮件信息对象赋值给，控制器成员变量 `$this->mail`
+6. 控制器：发送邮件。
+    - 所有控制器，都继承基类`BaseController.php`；
+    - 父类`BaseController.php` 会在析构函数`__destruct()`中处理邮件的发送；
+    - 单例模式。实例化邮件发送类。`new Nette\Mail\SmtpMailer($mail->config)`；
+    - 然后将邮件要发送的信息，`send()`出去；
+    - 稍等一会，邮件发送成功；

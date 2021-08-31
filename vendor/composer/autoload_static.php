@@ -49,6 +49,7 @@ class ComposerStaticInita9f4d43e7ec60598f34329ac0034f164
         'BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
+        'Mail' => __DIR__ . '/../..' . '/services/Mail.php',
         'Nette\\ArgumentOutOfRangeException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\Bridges\\MailDI\\MailExtension' => __DIR__ . '/..' . '/nette/mail/src/Bridges/MailDI/MailExtension.php',
         'Nette\\DeprecatedException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',

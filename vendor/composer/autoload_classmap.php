@@ -10,6 +10,7 @@ return array(
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
+    'Mail' => $baseDir . '/services/Mail.php',
     'Nette\\ArgumentOutOfRangeException' => $vendorDir . '/nette/utils/src/exceptions.php',
     'Nette\\Bridges\\MailDI\\MailExtension' => $vendorDir . '/nette/mail/src/Bridges/MailDI/MailExtension.php',
     'Nette\\DeprecatedException' => $vendorDir . '/nette/utils/src/exceptions.php',
