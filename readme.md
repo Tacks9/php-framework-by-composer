@@ -10,6 +10,8 @@
 - [利用 Composer 一步一步构建自己的 PHP 框架（三）——设计 MVC](https://lvwenhan.com/php/408.html)
 - [利用 Composer 一步一步构建自己的 PHP 框架（四）——使用 ORM](http://lvwenhan.com/php/409.html)
 - [利用 Composer 完善自己的 PHP 框架（一）——视图装载](https://lvwenhan.com/php/410.html)
+- [利用 Composer 完善自己的 PHP 框架（二）——发送邮件](https://lvwenhan.com/php/412.html)
+- [利用 Composer 完善自己的 PHP 框架（三）——Redis 缓存](https://lvwenhan.com/php/413.html)
 
 
 ## 1 Composer依赖管理器
@@ -420,6 +422,7 @@ Macaw::$error_callback = function() {
 
 - `View.php` 视图装载器
 - `Mail.php` 邮件发送器
+- `Redis.php`Redis驱动类
 
 
 
@@ -450,7 +453,7 @@ vendor/nette/utils
 
 ```
 
-#### 2.4.2 邮件作用
+#### 2.7.2 邮件作用
 
 **功能**
 
@@ -499,3 +502,82 @@ $ php73 composer.phar dump-autoload
     - 单例模式。实例化邮件发送类。`new Nette\Mail\SmtpMailer($mail->config)`；
     - 然后将邮件要发送的信息，`send()`出去；
     - 稍等一会，邮件发送成功；
+
+
+
+
+### 2.8 缓存类Redis模块
+
+> `Redis` 是一个开源的内存数据库服务器。可以用 `Redis` 作为高速缓存，存放系统经常需要访问的数据，但它作用远不止于此，还要看你怎么使用它！
+
+-  字符串（strings）
+-  散列（hashes）
+-  列表（lists）
+-  集合（sets）
+-  有序集合（sorted sets）  
+
+#### 2.8.1 初始步骤
+
+> `redis`官方推荐的php客户端是`predis`和`phpredis`。
+
+> `phpredis` 是使用 c 写的 php 扩展； `predis` 是使用纯 php 写的。
+ 
+
+- [GitHub上高分的PHP操作Redis库](https://github.com/search?l=PHP&o=desc&q=redis&s=stars&type=Repositories)
+- [predis/predis](https://github.com/predis/predis)
+- [phpredis/phpredis](https://github.com/phpredis/phpredis)
+
+
+这里选择`predis`,使用`composer`安装方便一些;
+
+当然事先你需要安装 redis服务，以及php的redis扩展，这些你应该都知道~
+
+
+**【predis/predis】**
+
+- 安装
+
+```shell
+# 安装路由库
+{
+  "require": {
+      "predis/predis": "*"
+  }
+}
+# 更新
+$ php73 composer.phar update
+# 注意一下文件变化
+vendor/composer
+ 
+```
+
+
+
+#### 2.8.2 Redis作用
+
+**功能**
+
+#### 2.8.3 缓存类`Redis`自动加载操作
+
+**创建Redis缓存类**
+
+- `services/Redis.php`
+
+```php
+# composer配置自动加载
+"autoload": {
+    "classmap": [
+      "services",
+    ]
+}
+
+# 更新
+$ php73 composer.phar dump-autoload
+
+# composer 文件变化
+```
+
+
+#### 2.8.4 缓存类`Redis`执行流程
+
+ 

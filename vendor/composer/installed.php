@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '68432bd5efefbf0e14a5ed77fca45308bea7d791',
+        'reference' => 'c63e69bc3b12c305b86cf25a965525f60d87c954',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '68432bd5efefbf0e14a5ed77fca45308bea7d791',
+            'reference' => 'c63e69bc3b12c305b86cf25a965525f60d87c954',
             'dev_requirement' => false,
         ),
         'envms/fluentpdo' => array(
@@ -62,6 +62,15 @@
             'install_path' => __DIR__ . '/../noahbuscher/macaw',
             'aliases' => array(),
             'reference' => 'ade32370a3d09f1fa498de254411d1b6b7be1877',
+            'dev_requirement' => false,
+        ),
+        'predis/predis' => array(
+            'pretty_version' => 'v1.1.7',
+            'version' => '1.1.7.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../predis/predis',
+            'aliases' => array(),
+            'reference' => 'b240daa106d4e02f0c5b7079b41e31ddf66fddf8',
             'dev_requirement' => false,
         ),
         'psr/log' => array(

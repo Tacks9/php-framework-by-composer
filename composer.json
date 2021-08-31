@@ -3,7 +3,8 @@
         "noahbuscher/macaw": "dev-master",
     	"envms/fluentpdo": "^2.2.0",
         "filp/whoops": "*",
-        "nette/mail": "*"
+        "nette/mail": "*",
+        "predis/predis": "*"
     },
     "autoload": {
         "classmap": [

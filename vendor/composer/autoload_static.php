@@ -14,6 +14,7 @@ class ComposerStaticInita9f4d43e7ec60598f34329ac0034f164
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Predis\\' => 7,
         ),
         'N' => 
         array (
@@ -33,6 +34,10 @@ class ComposerStaticInita9f4d43e7ec60598f34329ac0034f164
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Predis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/predis/predis/src',
         ),
         'NoahBuscher\\Macaw\\' => 
         array (
@@ -107,6 +112,7 @@ class ComposerStaticInita9f4d43e7ec60598f34329ac0034f164
         'Nette\\Utils\\Strings' => __DIR__ . '/..' . '/nette/utils/src/Utils/Strings.php',
         'Nette\\Utils\\UnknownImageFileException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Utils\\Validators' => __DIR__ . '/..' . '/nette/utils/src/Utils/Validators.php',
+        'Redis' => __DIR__ . '/../..' . '/services/Redis.php',
         'View' => __DIR__ . '/../..' . '/services/View.php',
     );
 
