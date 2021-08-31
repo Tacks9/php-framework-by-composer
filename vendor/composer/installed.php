@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'c63e69bc3b12c305b86cf25a965525f60d87c954',
+        'reference' => '320bf29036d70d1794e3eabf21ec34c964aec6da',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'c63e69bc3b12c305b86cf25a965525f60d87c954',
+            'reference' => '320bf29036d70d1794e3eabf21ec34c964aec6da',
             'dev_requirement' => false,
         ),
         'envms/fluentpdo' => array(

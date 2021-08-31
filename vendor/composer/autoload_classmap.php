@@ -68,6 +68,6 @@ return array(
     'Nette\\Utils\\Strings' => $vendorDir . '/nette/utils/src/Utils/Strings.php',
     'Nette\\Utils\\UnknownImageFileException' => $vendorDir . '/nette/utils/src/Utils/exceptions.php',
     'Nette\\Utils\\Validators' => $vendorDir . '/nette/utils/src/Utils/Validators.php',
-    'Redis' => $baseDir . '/services/Redis.php',
+    'RedisCache' => $baseDir . '/services/RedisCache.php',
     'View' => $baseDir . '/services/View.php',
 );

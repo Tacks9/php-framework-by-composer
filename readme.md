@@ -422,7 +422,7 @@ Macaw::$error_callback = function() {
 
 - `View.php` 视图装载器
 - `Mail.php` 邮件发送器
-- `Redis.php`Redis驱动类
+- `RedisCache.php`RedisCache 驱动类
 
 
 
@@ -561,7 +561,14 @@ vendor/composer
 
 **创建Redis缓存类**
 
-- `services/Redis.php`
+- `services/RedisCache.php`
+
+**【报错】**
+
+如果发现报错 `Non-static method Redis::set() cannot be called statically`
+
+则可能是你PHP安装的有`Redis`扩展，造成了冲突，所以可以换一个类库的名字，如 `RedisCache`
+
 
 ```php
 # composer配置自动加载
@@ -578,6 +585,14 @@ $ php73 composer.phar dump-autoload
 ```
 
 
-#### 2.8.4 缓存类`Redis`执行流程
+#### 2.8.4 缓存类`RedisCache`执行流程
 
  
+1. 组件：类
+    - `RedisCache`组件缓存设置类
+2. 配置：`config/redis.php`
+3. 组件：相关方法
+    - `set($key, $value, $time=null, $unit=null)` 可以设置过期时间，并且设置不同的单位
+    - 每次执行方法都需要实例化一个对象，`new  \Predis\Client();` 这里也需要进行优化
+    
+

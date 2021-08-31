@@ -5,7 +5,7 @@
  * @Descripttion: Home控制器
  * @Author: tacks321@qq.com
  * @Date: 2021-08-27 16:28:56
- * @LastEditTime: 2021-08-31 10:23:27
+ * @LastEditTime: 2021-08-31 16:24:16
  */
 
 class HomeController extends BaseController 
@@ -73,6 +73,20 @@ class HomeController extends BaseController
         $this->view = View::make('home.article')->with('article',$article)
                                                 ->withPageTitle($page_title);
 
+        
+    }
+
+    // Redis设置
+    public function rediskey()
+    {
+        $key = 'PFC:RedisCache';
+
+        $page_title = "控制器、方法  Home/rediskey ";
+
+        RedisCache::set($key, $page_title, 60, 's');
+
+        echo RedisCache::get($key);
+        
         
     }
 
