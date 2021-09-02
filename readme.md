@@ -596,3 +596,71 @@ $ php73 composer.phar dump-autoload
     - 每次执行方法都需要实例化一个对象，`new  \Predis\Client();` 这里也需要进行优化
     
 
+
+### 2.9 压测
+
+#### 2.9.1 查看服务器配置
+
+```shell
+
+【 物理CPU个数查看 】
+[root@Centos7 apps]# cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l
+1
+
+
+【 每个物理封装CPU的物理核数 】
+[root@Centos7 apps]# cat /proc/cpuinfo| grep "cpu cores"| uniq
+cpu cores	: 4
+
+【 查看cpu运行模式 】
+[root@Centos7 apps]# getconf LONG_BIT
+64
+
+【 查看服务器CPU型号 】
+[root@Centos7 apps]# cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq
+ Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+
+【 查看服务器型号指令 】
+[root@Centos7 apps]# dmidecode -s system-product-name
+VirtualBox
+
+【 内核信息查询 】
+[root@Centos7 apps]# uname -a
+Linux Centos7 3.10.0-1160.11.1.el7.x86_64 #1 SMP Fri Dec 18 16:34:56 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+【 内存及使用情况查询 】
+[root@Centos7 apps]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:           3.7G        708M        2.7G        8.7M        280M        2.8G
+Swap:          2.0G          0B        2.0G
+
+
+
+```
+
+#### 2.9.2 ab压测
+
+- `PFC`、`Yaf`分别在本地进行压测情况
+
+```php
+[root@Centos7 ~]# ab -n1000 -c1  http://pfc.tacks.com/home/echotest
+Requests per second:    39.11 [#/sec] (mean)
+
+[root@Centos7 ~]# ab -n1000 -c100  http://pfc.tacks.com/home/echotest
+Requests per second:    107.18 [#/sec] (mean)
+
+[root@Centos7 ~]# ab -n1000 -c200  http://pfc.tacks.com/home/echotest
+Requests per second:    64.42 [#/sec] (mean)
+
+=====================================================================================
+
+[root@Centos7 ~]# ab -n1000 -c1  http://yaf.tacks.com/home/echotest
+Requests per second:    32.10 [#/sec] (mean)
+
+[root@Centos7 ~]# ab -n1000 -c100  http://yaf.tacks.com/home/echotest
+Requests per second:    76.45 [#/sec] (mean)
+
+[root@Centos7 ~]# ab -n1000 -c200  http://yaf.tacks.com/home/echotest
+Requests per second:    64.29 [#/sec] (mean)
+
+```

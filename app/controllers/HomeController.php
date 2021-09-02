@@ -5,7 +5,7 @@
  * @Descripttion: Home控制器
  * @Author: tacks321@qq.com
  * @Date: 2021-08-27 16:28:56
- * @LastEditTime: 2021-08-31 16:24:16
+ * @LastEditTime: 2021-09-02 15:05:11
  */
 
 class HomeController extends BaseController 
@@ -89,5 +89,13 @@ class HomeController extends BaseController
         
         
     }
+
+
+    // 测试接口
+    public function echotest()
+    {
+        echo "<h1> 控制器、方法  Home/echotest </h1>";
+    }
+    
 
 }
